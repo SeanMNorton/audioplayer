@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Audio Player</title>
   <link rel="stylesheet" href="assets/css/player.css">
   <link rel="stylesheet" href="assets/css/font-awesome.css">
@@ -11,14 +12,13 @@
 <body>
 
  <player>
-  <audio> </audio>
   <div class="controls" id="audio-controls">
-    <div class="backward"><i class="fa fa-backward" aria-hidden="true"></i></div>
-    <div class="play-pause"><i class="fa fa-play" aria-hidden="true"></i></div>
-    <div class="forward"><i class="fa fa-forward" aria-hidden="true"></i></div>
-    <div class="title"></div>
+    <div id="previous-song"><i class="fa fa-backward" aria-hidden="true"></i></div>
+    <div id="play-pause-song"><i class="fa fa-play" aria-hidden="true"></i></div>
+    <div id="next-song"><i class="fa fa-forward" aria-hidden="true"></i></div>
+    <div id="song-title"></div>
+    <div id="song-time">00:00</div>
   </div>
-
 </player>
 
 </body>
