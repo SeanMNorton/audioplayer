@@ -19,8 +19,7 @@ $(document).ready(function(){
   var playPauseIcon = $('#play-pause-song i');
   var song = new Audio();
   initializePlayer(song, album[trackNumber]);
-  startTime(song);
-  autoNext(song);
+
   $('#play-pause-song').on('click', function(){
     togglePlay(song, playPauseIcon);
   });
@@ -41,11 +40,20 @@ $(document).ready(function(){
 var initializePlayer = function (song, songData) {
     setSongSrc(song, songData.src);
     updateTitle(songData);
+    startTime(song);
+    autoNext(song);
+    updateDuration(song);
 };
 
 var updateTitle = function(songData) {
   $('#song-title').text(songData.title);
 }
+
+var updateDuration = function(song) {
+  song.addEventListener('loadedmetadata',function() {
+    $('#duration').text('/ ' + formatTime(song.duration));
+  });
+};
 
 var togglePlay = function(song, icon) {
   song.paused ? playSong(song, icon) : pauseSong(song, icon)
@@ -87,7 +95,7 @@ var autoNext = function(song) {
 
 var startTime = function(song){
   setInterval(function(){
-    $('#song-time').text(formatTime(song.currentTime));
+    $('#current-time').text(formatTime(song.currentTime));
   }, 500);
 };
 
