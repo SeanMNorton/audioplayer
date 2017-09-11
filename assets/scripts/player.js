@@ -1,19 +1,11 @@
 var album = [
   {
-    title: 'shorty',
-    src: "assets/media/22seconds.mp3"
+    title: "Traveler's Tune",
+    src: "assets/media/travelersTune.mp3"
   },
   {
-    title: "Mexican Jackpot",
-    src: "assets/media/mexican-jackpot.mp3"
-  },
-  {
-    title: "Hard Sun",
-    src: "assets/media/hard-sun.m4a"
-  },
-  {
-    title: "Ludivine",
-    src: 'assets/media/Ludivine.mp3'
+    title: "Tupelo",
+    src: "assets/media/tupelo.mp3"
   }
 ];
 var trackNumber = 0;
@@ -24,7 +16,7 @@ $(document).ready(function(){
   var song = new Audio();
   initializePlayer(song, album[trackNumber]);
 
-  $('#play-pause-song').on('click', function(){
+  $('#play-pause-song, player').on('click', function(){
     togglePlay(song, playPauseIcon);
   });
 
@@ -42,7 +34,13 @@ $(document).ready(function(){
   });
 });
 
-var initializePlayer = function (song, songData) {
+var toggleControls = function() {
+  $('#toggle-controls').click(function(){
+    $('#audio-controls').toggle();
+  });
+};
+
+var initializePlayer = function(song, songData) {
     setSongSrc(song, songData.src);
     updateTitle(songData);
     startTime(song);

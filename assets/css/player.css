@@ -2,6 +2,7 @@ body {
   background-color: #292028;
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
   height: 100vh;
   font-family: sans-serif;
@@ -15,27 +16,57 @@ player {
   min-height: 290px;
   max-width: 750px;
   max-height: 750px;
-  border: 4px solid #5a4043;
+  border: 5px solid #5a4043;
   background: url('../media/album.png') no-repeat center center;
   background-size: cover;
 }
 
-#progress {
-  width: 100%;
-  background-color: #5a4043;
+.playback {
+  width: calc(10px + 40vw);
+  min-width: 300px;
+  max-width: 760px;
 }
+
+#progress {
+  width: 80%;
+  height: 8px;
+  background-color: #292028;
+}
+
 #progress-bar {
   width: 1%;
   height: 8px;
-  background-color: white;
+  background-color: #5a4043;
 }
 
-.controls {
+
+.top, .bottom, .middle {
+  min-height: 2vh;
   width: 100%;
-  height: 50px;
-  background-color: black;
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  color: white;
+  justify-content: center;
+}
+.bottom > * {
+  padding: 2vh 2vw;
+}
+
+.top {
+  justify-content: space-between;
+  align-items: center;
+  height: 4vh;
+}
+
+#song-time {
+  padding: 0 2vw;
+  font-size: .7em;
+}
+#song-title {
+  padding: 0 2vw;
+}
+
+#audio-controls {
+  width: 100%;
+  background-color: #5a4043;
+  color: #292028;
 }

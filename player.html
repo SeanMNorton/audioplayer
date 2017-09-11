@@ -13,21 +13,34 @@
 
 <body>
 
-  <player>
+  <player></player>
+
+<div class="playback">
     <div class="controls" id="audio-controls">
-      <div id="previous-song"><i class="fa fa-backward" aria-hidden="true"></i></div>
-      <div id="play-pause-song"><i class="fa fa-play" aria-hidden="true"></i></div>
-      <div id="next-song"><i class="fa fa-forward" aria-hidden="true"></i></div>
-      <div id="song-title"></div>
-      <div id="song-time">
-        <span id="current-time">00:00</span>
-        <span id="duration">/ 00:00</span>
+
+      <div class="top">
+        <div id="song-title"></div>
+        <div id="song-time">
+          <span id="current-time">00:00</span>
+          <span id="duration">/ 00:00</span>
+        </div>
       </div>
+
+      <div class="middle">
+        <div id="progress"> <div id="progress-bar"></div> </div>
+      </div>
+
+      <div class="bottom">
+        <div id="previous-song"> <i class="fa fa-backward" aria-hidden="true"></i> </div>
+        <div id="play-pause-song"> <i class="fa fa-play" aria-hidden="true"></i> </div>
+        <div id="next-song"> <i class="fa fa-forward" aria-hidden="true"></i> </div>
+      </div>
+
     </div>
-    <div id="progress">
-      <div id="progress-bar"> </div>
-    </div>
-  </player>
+
+</div>
+
+
 
 </body>
 <script type="text/javascript" src="assets/scripts/player.js"></script>
