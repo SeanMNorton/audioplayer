@@ -1,5 +1,9 @@
 var album = [
   {
+    title: 'shorty',
+    src: "assets/media/22seconds.mp3"
+  },
+  {
     title: "Mexican Jackpot",
     src: "assets/media/mexican-jackpot.mp3"
   },
@@ -19,8 +23,7 @@ $(document).ready(function(){
   var playPauseIcon = $('#play-pause-song i');
   var song = new Audio();
   initializePlayer(song, album[trackNumber]);
-  startTime(song);
-  autoNext(song);
+
   $('#play-pause-song').on('click', function(){
     togglePlay(song, playPauseIcon);
   });
@@ -29,6 +32,7 @@ $(document).ready(function(){
     setSongSrc(song, nextSong());
     playSong(song, playPauseIcon );
     updateTitle(album[trackNumber]);
+    updateProgress(song);
   });
 
   $('#previous-song').on('click', function(){
@@ -41,11 +45,49 @@ $(document).ready(function(){
 var initializePlayer = function (song, songData) {
     setSongSrc(song, songData.src);
     updateTitle(songData);
+    startTime(song);
+    autoNext(song);
+    updateDurationText(song);
+    updateProgress(song);
+    clickableProgressBar(song);
+};
+
+var clickableProgressBar = function(song) {
+  $('#progress').click(function (e){
+    var elm = $(this),
+        maxWidth = elm.width(),
+        xPosClick = e.pageX - elm.offset().left,
+        width = (xPosClick / maxWidth) * 100,
+        time = song.duration * (width/100);
+    song.currentTime = time;
+    updateProgress(song, width)
+  });
+};
+
+var updateProgress = function(song, width = 0){
+  var progressBar = document.getElementById("progress-bar"),
+      width = width,
+      interval = setInterval(frame, 10);
+  function frame() {
+    if (width >= 100) {
+      width = 0;
+      clearInterval(interval);
+    } else {
+      width = (song.currentTime/song.duration) * 100;
+      progressBar.style.width = width + '%';
+    }
+  }
 };
 
 var updateTitle = function(songData) {
   $('#song-title').text(songData.title);
 }
+
+var updateDurationText = function(song) {
+  song.addEventListener('loadedmetadata',function() {
+    $('#duration').text('/ ' + formatTime(song.duration));
+  });
+};
 
 var togglePlay = function(song, icon) {
   song.paused ? playSong(song, icon) : pauseSong(song, icon)
@@ -87,7 +129,7 @@ var autoNext = function(song) {
 
 var startTime = function(song){
   setInterval(function(){
-    $('#song-time').text(formatTime(song.currentTime));
+    $('#current-time').text(formatTime(song.currentTime));
   }, 500);
 };
 
