@@ -1,5 +1,9 @@
 var album = [
   {
+    title: 'shorty',
+    src: "assets/media/22seconds.mp3"
+  },
+  {
     title: "Mexican Jackpot",
     src: "assets/media/mexican-jackpot.mp3"
   },
@@ -28,6 +32,7 @@ $(document).ready(function(){
     setSongSrc(song, nextSong());
     playSong(song, playPauseIcon );
     updateTitle(album[trackNumber]);
+    updateProgress(song);
   });
 
   $('#previous-song').on('click', function(){
@@ -42,14 +47,43 @@ var initializePlayer = function (song, songData) {
     updateTitle(songData);
     startTime(song);
     autoNext(song);
-    updateDuration(song);
+    updateDurationText(song);
+    updateProgress(song);
+    clickableProgressBar(song);
+};
+
+var clickableProgressBar = function(song) {
+  $('#progress').click(function (e){
+    var elm = $(this),
+        maxWidth = elm.width(),
+        xPosClick = e.pageX - elm.offset().left,
+        width = (xPosClick / maxWidth) * 100,
+        time = song.duration * (width/100);
+    song.currentTime = time;
+    updateProgress(song, width)
+  });
+};
+
+var updateProgress = function(song, width = 0){
+  var progressBar = document.getElementById("progress-bar"),
+      width = width,
+      interval = setInterval(frame, 10);
+  function frame() {
+    if (width >= 100) {
+      width = 0;
+      clearInterval(interval);
+    } else {
+      width = (song.currentTime/song.duration) * 100;
+      progressBar.style.width = width + '%';
+    }
+  }
 };
 
 var updateTitle = function(songData) {
   $('#song-title').text(songData.title);
 }
 
-var updateDuration = function(song) {
+var updateDurationText = function(song) {
   song.addEventListener('loadedmetadata',function() {
     $('#duration').text('/ ' + formatTime(song.duration));
   });

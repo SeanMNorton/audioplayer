@@ -8,22 +8,29 @@
   <link rel="stylesheet" href="assets/css/player.css">
   <link rel="stylesheet" href="assets/css/font-awesome.css">
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
 </head>
+
 <body>
 
- <player>
-  <div class="controls" id="audio-controls">
-    <div id="previous-song"><i class="fa fa-backward" aria-hidden="true"></i></div>
-    <div id="play-pause-song"><i class="fa fa-play" aria-hidden="true"></i></div>
-    <div id="next-song"><i class="fa fa-forward" aria-hidden="true"></i></div>
-    <div id="song-title"></div>
-    <div id="song-time">
-      <span id="current-time">00:00</span>
-      <span id="duration">/ 00:00</span>
+  <player>
+    <div class="controls" id="audio-controls">
+      <div id="previous-song"><i class="fa fa-backward" aria-hidden="true"></i></div>
+      <div id="play-pause-song"><i class="fa fa-play" aria-hidden="true"></i></div>
+      <div id="next-song"><i class="fa fa-forward" aria-hidden="true"></i></div>
+      <div id="song-title"></div>
+      <div id="song-time">
+        <span id="current-time">00:00</span>
+        <span id="duration">/ 00:00</span>
+      </div>
     </div>
-  </div>
-</player>
+    <div id="progress">
+      <div id="progress-bar"> </div>
+    </div>
+  </player>
 
 </body>
 <script type="text/javascript" src="assets/scripts/player.js"></script>
+</script>
+
 </html>
